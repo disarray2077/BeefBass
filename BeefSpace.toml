@@ -1,0 +1,9 @@
+FileVersion = 1
+Projects = {BeefBass = {Path = "."}, "BeefBass.Fx" = {Path = "AddOns/BassFx"}, CLIMediaPlayer = {Path = "CLIMediaPlayer"}}
+Unlocked = ["corlib"]
+
+[Workspace]
+StartupProject = "CLIMediaPlayer"
+
+[Configs.Debug.Win64]
+AllocStackTraceDepth = 10

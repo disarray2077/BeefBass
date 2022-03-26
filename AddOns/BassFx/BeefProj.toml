@@ -1,0 +1,13 @@
+FileVersion = 1
+Dependencies = {corlib = "*", corlib = "*", BeefBass = "*", corlib = "*"}
+
+[Project]
+Name = "BeefBass.Fx"
+TargetType = "BeefLib"
+StartupObject = "BeefBass.Fx.Program"
+
+[Configs.Debug.Win64]
+PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/dist/Win64/*.dll\")"]
+
+[Configs.Release.Win64]
+PostBuildCmds = ["CopyToDependents(\"$(ProjectDir)/dist/Win64/*.dll\")"]
