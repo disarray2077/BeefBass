@@ -1,0 +1,9 @@
+FileVersion = 1
+Dependencies = {corlib = "*", BeefBass = "*"}
+
+[Project]
+Name = "CLIMediaPlayer"
+StartupObject = "CLIMediaPlayer.Program"
+
+[[Project.DistinctOptions]]
+Filter = "System.String"
