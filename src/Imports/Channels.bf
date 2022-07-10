@@ -16,7 +16,7 @@ namespace BeefBass
         /// Use <see cref="LastError"/> to get the error code.
         /// </returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetInfo")]
         public static extern bool ChannelGetInfo(int32 Handle, out ChannelInfo Info);
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace BeefBass
 		/// If you want to apply a DSP function to a sample, then you should stream the sample.
 		/// </para>
 		/// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelSetDSP")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetDSP")]
         public static extern int32 ChannelSetDSP(int32 Handle, DSPProcedure Procedure, void* User, int32 Priority);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace BeefBass
         /// <param name="DSP">Handle of the DSP function to remove from the channel (return value of a previous <see cref="ChannelSetDSP" /> call).</param>
         /// <returns>If succesful, <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle">At least one of <paramref name="Handle" /> and <paramref name="DSP" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_ChannelRemoveDSP")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelRemoveDSP")]
         public static extern bool ChannelRemoveDSP(int32 Handle, int32 DSP);
         #endregion
 
@@ -110,7 +110,7 @@ namespace BeefBass
 		/// </para>
 		/// <para>With recording channels, <see cref="SyncFlags.Position"/> syncs are triggered just before the <see cref="RecordProcedure" /> receives the block of data containing the sync position.</para>
 		/// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelSetSync")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetSync")]
         public static extern int32 ChannelSetSync(int32 Handle, SyncFlags Type, int64 Parameter, SyncProcedure Procedure, void* User);
 		
 		/// <summary>
@@ -123,7 +123,7 @@ namespace BeefBass
 		/// Use <see cref="LastError" /> to get the error code.
 		/// </returns>
 		/// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
-        [Import(DllName), LinkName("BASS_ChannelRemoveSync")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelRemoveSync")]
         public static extern bool ChannelRemoveSync(int32 Handle, int32 Sync);
         #endregion
 
@@ -153,7 +153,7 @@ namespace BeefBass
         /// When streaming in blocks (<see cref="BassFlags.StreamDownloadBlocks"/>), the restart parameter is ignored as it's not possible to go back to the start.
         /// The <paramref name="Restart" /> parameter is also of no consequence with recording channels.
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelPlay")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelPlay")]
         public static extern bool ChannelPlay(int32 Handle, bool Restart = false);
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace BeefBass
         /// Use <see cref="ChannelPlay" /> to resume a paused channel.
         /// <see cref="ChannelStop" /> can be used to stop a paused channel.
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelPause")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelPause")]
         public static extern bool ChannelPause(int32 Handle);
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace BeefBass
         /// <see cref="ChannelSetPosition" /> can be used to reset the channel and start decoding again.
         /// </para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelStop")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelStop")]
         public static extern bool ChannelStop(int32 Handle);
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace BeefBass
         /// Other threads wanting to access a locked channel will block until it is unlocked, so a channel should only be locked very briefly.
         /// A channel must be unlocked in the same thread that it was locked.
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelLock")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelLock")]
         public static extern bool ChannelLock(int32 Handle, bool Lock = true);
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace BeefBass
         /// and this function still returns <see cref="PlaybackState.Playing"/>.
         /// </para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelIsActive")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelIsActive")]
         public static extern PlaybackState ChannelIsActive(int32 Handle);
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace BeefBass
         /// On Windows, it is possible for there to be a slight gap between them, but it will generally be shorter (and never longer) than starting them individually.
         /// </para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelSetLink")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetLink")]
         public static extern bool ChannelSetLink(int32 Handle, int32 Channel);
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace BeefBass
         /// </returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
         /// <exception cref="Errors.Already">Either <paramref name="Channel" /> is not a valid channel, or it is already not linked to <paramref name="Handle" />.</exception>
-        [Import(DllName), LinkName("BASS_ChannelRemoveLink")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelRemoveLink")]
         public static extern bool ChannelRemoveLink(int32 Handle, int32 Channel);
 
         #region Channel Flags
@@ -315,7 +315,7 @@ namespace BeefBass
         /// To reduce the delay, use the <see cref="PlaybackBufferLength" /> config option to reduce the Buffer Length.
         /// </para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelFlags")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelFlags")]
         public static extern BassFlags ChannelFlags(int32 Handle, BassFlags Flags, BassFlags Mask);
 
         /// <summary>
@@ -352,7 +352,7 @@ namespace BeefBass
         /// </returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
         /// <exception cref="Errors.Type"><paramref name="Attribute" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetAttribute")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetAttribute")]
         public static extern bool ChannelGetAttribute(int32 Handle, ChannelAttribute Attribute, out float Value);
 
         /// <summary>
@@ -383,7 +383,7 @@ namespace BeefBass
         /// <exception cref="Errors.NotAvailable">The <paramref name="Attribute" /> is not available.</exception>
         /// <exception cref="Errors.Type"><paramref name="Attribute" /> is not valid.</exception>
         /// <exception cref="Errors.Parameter">The <paramref name="Value" /> content or <paramref name="Size" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetAttributeEx")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetAttributeEx")]
         public static extern int32 ChannelGetAttribute(int32 Handle, ChannelAttribute Attribute, void* Value, int32 Size);
 
         /// <summary>
@@ -401,7 +401,7 @@ namespace BeefBass
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
         /// <exception cref="Errors.Type"><paramref name="Attribute" /> is not valid.</exception>
         /// <exception cref="Errors.Parameter"><paramref name="Value" /> is not valid. See the attribute's documentation for the valid range of values.</exception>
-        [Import(DllName), LinkName("BASS_ChannelSetAttribute")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetAttribute")]
         public static extern bool ChannelSetAttribute(int32 Handle, ChannelAttribute Attribute, float Value);
 
         /// <summary>
@@ -435,7 +435,7 @@ namespace BeefBass
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
         /// <exception cref="Errors.Type"><paramref name="Attribute" /> is not valid.</exception>
         /// <exception cref="Errors.Parameter"><paramref name="Value" /> is not valid. See the attribute's documentation for the valid range of values.</exception>
-        [Import(DllName), LinkName("BASS_ChannelSetAttributeEx")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetAttributeEx")]
         public static extern bool ChannelSetAttribute(int32 Handle, ChannelAttribute Attribute, void* Value, int32 Size);
         #endregion
 
@@ -457,7 +457,7 @@ namespace BeefBass
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.NotAvailable">The requested tags are not available.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetTags")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetTags")]
         public static extern void* ChannelGetTags(int32 Handle, TagType Tags);
 
         /// <summary>
@@ -481,7 +481,7 @@ namespace BeefBass
         /// <para>Unless an OGG file contains a single bitstream, the number of bitstreams it contains will only be available if it was pre-scanned at the stream's creation.</para>
         /// <para>Retrieving the Length of a MOD music requires that the <see cref="BassFlags.Prescan"/> flag was used in the <see cref="MusicLoad(string,long,int,BassFlags,int)" /> call.</para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelGetLength")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetLength")]
         public static extern int64 ChannelGetLength(int32 Handle, PositionFlags Mode = PositionFlags.Bytes);
 
         /// <summary>
@@ -492,7 +492,7 @@ namespace BeefBass
         /// <returns>If successful, then the translated Length in seconds is returned, else a negative value is returned. Use <see cref="LastError"/> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
         /// <remarks>The translation is based on the channel's initial sample rate, when it was created.</remarks>
-        [Import(DllName), LinkName("BASS_ChannelBytes2Seconds")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelBytes2Seconds")]
         public static extern double ChannelBytes2Seconds(int32 Handle, int64 Position);
 
         /// <summary>
@@ -509,7 +509,7 @@ namespace BeefBass
         /// <para>The translation is based on the channel's initial sample rate, when it was created.</para>
         /// <para>The return value is rounded down to the position of the nearest sample.</para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelSeconds2Bytes")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSeconds2Bytes")]
         public static extern int64 ChannelSeconds2Bytes(int32 Handle, double Position);
 
         /// <summary>
@@ -525,7 +525,7 @@ namespace BeefBass
         /// <exception cref="Errors.NotAvailable">The requested position is not available.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
         /// <remarks>With MOD music you might use the <see cref="BitHelper.LoWord" /> and <see cref="BitHelper.HiWord" /> methods to retrieve the order and the row values respectively.</remarks>
-        [Import(DllName), LinkName("BASS_ChannelGetPosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetPosition")]
         public static extern int64 ChannelGetPosition(int32 Handle, PositionFlags Mode = PositionFlags.Bytes);
 
         /// <summary>
@@ -567,7 +567,7 @@ namespace BeefBass
         /// <para>The <see cref="PositionFlags.Scan"/> flag works the same way as the <see cref="CreateStream(string,long,long,BassFlags)" /> <see cref="BassFlags.Prescan"/> flag, and can be used to delay the scanning until after the stream has been created. When a position beyond the end is requested, the call will fail (<see cref="Errors.Position"/> error code) but the seek table and exact Length will have been scanned.
         /// When a file has been scanned, all seeking (even without the <see cref="PositionFlags.Scan"/> flag) within the scanned part of it will use the scanned infomation.</para>
         /// </remarks>
-        [Import(DllName), LinkName("BASS_ChannelSetPosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetPosition")]
         public static extern bool ChannelSetPosition(int32 Handle, int64 Position, PositionFlags Mode = PositionFlags.Bytes);
 
         /// <summary>
@@ -576,12 +576,12 @@ namespace BeefBass
         /// <param name="Handle">The channel Handle... a HCHANNEL, HMUSIC, HSTREAM or HRECORD.</param>
         /// <param name="Attribute">The attribute to check for sliding (0 for any attribute).</param>
         /// <returns>If the attribute (or any) is sliding, then <see langword="true" /> is returned, else <see langword="false" /> is returned.</returns>
-        [Import(DllName), LinkName("BASS_ChannelIsSliding")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelIsSliding")]
         public static extern bool ChannelIsSliding(int32 Handle, ChannelAttribute Attribute);
 
         const int SlideLog = 0x01000000;
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern bool BASS_ChannelSlideAttribute(int32 Handle, int32 Attribute, float Value, int32 Time);
 
         /// <summary>
@@ -647,7 +647,7 @@ namespace BeefBass
         /// <exception cref="Errors.NotPlaying">The channel is not playing.</exception>
         /// <exception cref="Errors.Ended">The decoding channel has reached the end.</exception>
         /// <exception cref="Errors.BufferLost">Should not happen... check that a valid window handle was used with <see cref="Init" />.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetLevel")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetLevel")]
         public static extern int32 ChannelGetLevel(int32 Handle);
 
 		public static (int32, int32) ChannelGetLevelLeftRight(int32 Handle)
@@ -705,7 +705,7 @@ namespace BeefBass
         /// <exception cref="Errors.NotPlaying">The channel is not playing.</exception>
         /// <exception cref="Errors.Ended">The decoding channel has reached the end.</exception>
         /// <exception cref="Errors.BufferLost">Should not happen... check that a valid window handle was used with <see cref="Init" />.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetLevelEx")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetLevelEx")]
         public static extern bool ChannelGetLevel(int32 Handle, float* Levels, float Length, LevelRetrievalFlags Flags);
 
         /// <summary>
@@ -784,7 +784,7 @@ namespace BeefBass
         /// <exception cref="Errors.Ended">The channel has reached the end.</exception>
         /// <exception cref="Errors.NotAvailable">The <see cref="DataFlags.Available"/> flag was used with a decoding channel.</exception>
         /// <exception cref="Errors.BufferLost">Should not happen... check that a valid window handle was used with <see cref="Init" />.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetData")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetData")]
         public static extern int32 ChannelGetData(int32 Handle, void* Buffer, int32 Length);
 
         /// <summary>
@@ -883,7 +883,7 @@ namespace BeefBass
         /// <exception cref="Errors.NotAvailable">Decoding channels do not have playback buffers.</exception>
         /// <exception cref="Errors.Ended">The channel has ended.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_ChannelUpdate")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelUpdate")]
         public static extern bool ChannelUpdate(int32 Handle, int32 Length);
     }
 }

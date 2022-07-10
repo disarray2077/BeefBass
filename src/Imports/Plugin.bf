@@ -16,11 +16,11 @@ namespace BeefBass
 		/// <para>Note: There is no guarantee that the check is complete or might contain formats not being supported on your particular OS/machine (due to additional or missing audio codecs).</para>
 		/// </remarks>
 		/// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_PluginGetInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_PluginGetInfo")]
         public static extern PluginInfo* PluginGetInfo(int32 Handle);
 
         #region PluginLoad
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_PluginLoad(c_wchar* FileName, BassFlags Flags = BassFlags.Unicode);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace BeefBass
         /// Samples loaded by the plugin are unaffected as the plugin has nothing to do with them once they are loaded (the sample data is already fully decoded).
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_PluginFree")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_PluginFree")]
         public static extern bool PluginFree(int32 Handle);
     }
 }

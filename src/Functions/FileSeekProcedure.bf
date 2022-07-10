@@ -8,5 +8,6 @@ namespace BeefBass
     /// <param name="Offset">Position in bytes to seek to.</param>
     /// <param name="User">The User instance data given when <see cref="Bass.CreateStream(StreamSystem,BassFlags,FileProcedures,IntPtr)" /> was called.</param>
     /// <returns><see langword="true" /> if successful, else <see langword="false" />.</returns>
+    [CallingConvention(.Stdcall)]
     public function bool FileSeekProcedure(int64 Offset, void* User);
 }

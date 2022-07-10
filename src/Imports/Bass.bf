@@ -51,11 +51,11 @@ namespace BeefBass
         /// <seealso cref="ChannelUpdate"/>
         /// <seealso cref="PlaybackBufferLength"/>
         /// <seealso cref="UpdateThreads"/>
-        [Import(DllName), LinkName("BASS_Update")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Update")]
         public static extern bool Update(int32 Length);
 
         #region CPUUsage
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern float BASS_GetCPU();
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace BeefBass
         #endregion
 
         #region Version
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_GetVersion();
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace BeefBass
         #endregion
 
         #region Error Code
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern Errors BASS_ErrorGetCode();
 
         /// <summary>

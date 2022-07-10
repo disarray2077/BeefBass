@@ -31,7 +31,7 @@ namespace BeefBass
         /// <exception cref="Errors.Device"><paramref name="Device" /> is invalid.</exception>
         /// <exception cref="Errors.Already">The device has already been initialized. <see cref="RecordFree" /> must be called before it can be initialized again.</exception>
         /// <exception cref="Errors.Driver">There is no available device driver.</exception>
-        [Import(DllName), LinkName("BASS_RecordInit")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordInit")]
         public static extern bool RecordInit(int32 Device = DefaultDevice);
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace BeefBass
         /// <para>When using multiple recording devices, the current thread's device setting (as set with <see cref="CurrentRecordingDevice" />) determines which device this function call applies to.</para>
         /// </remarks>
         /// <exception cref="Errors.Init"><see cref="RecordInit" /> has not been successfully called - there are no initialized devices.</exception>
-        [Import(DllName), LinkName("BASS_RecordFree")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordFree")]
         public static extern bool RecordFree();
 
         #region RecordStart
@@ -90,7 +90,7 @@ namespace BeefBass
 		/// </exception>
 		/// <exception cref="Errors.Memory">There is insufficient memory.</exception>
 		/// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_RecordStart")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordStart")]
         static extern int32 RecordStart(int32 Frequency, int32 Channels, BassFlags Flags, RecordProcedure Procedure, void* User);
 
         /// <summary>
@@ -130,10 +130,10 @@ namespace BeefBass
         #endregion
 
         #region Current Recording Device
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_RecordGetDevice();
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern bool BASS_RecordSetDevice(int32 Device);
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace BeefBass
         /// </remarks>
         /// <exception cref="Errors.Device">The device number specified is invalid.</exception>
         /// <exception cref="Errors.DirectX">A sufficient version of DirectX is not installed.</exception>
-        [Import(DllName), LinkName("BASS_RecordGetDeviceInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordGetDeviceInfo")]
         public static extern bool RecordGetDeviceInfo(int32 Device, out DeviceInfo Info);
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace BeefBass
         /// Use <see cref="LastError" /> to get the error code.
         /// </returns>
         /// <exception cref="Errors.Init"><see cref="RecordInit" /> has not been successfully called - there are no initialized devices.</exception>
-        [Import(DllName), LinkName("BASS_RecordGetInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordGetInfo")]
         public static extern bool RecordGetInfo(out RecordInfo info);
 
         /// <summary>
@@ -308,10 +308,10 @@ namespace BeefBass
         /// <exception cref="Errors.Parameter"><paramref name="Input" /> is invalid.</exception>
         /// <exception cref="Errors.NotAvailable">A master input is not available.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_RecordGetInput")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordGetInput")]
         public static extern int32 RecordGetInput(int32 Input, out float Volume);
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_RecordGetInput(int32 Input, void* Volume);
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace BeefBass
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
         public static int32 RecordGetInput(int32 Input) => BASS_RecordGetInput(Input, null);
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern void* BASS_RecordGetInputName(int32 input);
 
         /// <summary>
@@ -387,7 +387,7 @@ namespace BeefBass
         /// <exception cref="Errors.Parameter"><paramref name="Input" /> or <paramref name="Volume" /> is invalid.</exception>
         /// <exception cref="Errors.NotAvailable">The soundcard/driver doesn't allow you to change the input or it's volume.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_RecordSetInput")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_RecordSetInput")]
         public static extern bool RecordSetInput(int32 Input, InputFlags Setting, float Volume);
     }
 }

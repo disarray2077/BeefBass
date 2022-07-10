@@ -5,7 +5,7 @@ namespace BeefBass
 {
     extension Bass
     {
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_StreamCreateFile(bool mem, void* file, int64 offset, int64 length, BassFlags flags);
         
         /// <summary>
@@ -250,10 +250,10 @@ namespace BeefBass
 		/// <exception cref="Errors.Memory">There is insufficient memory.</exception>
 		/// <exception cref="Errors.No3D">Could not initialize 3D support.</exception>
 		/// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_StreamCreateFileUser")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_StreamCreateFileUser")]
         public static extern int32 CreateStream(StreamSystem System, BassFlags Flags, FileProcedures* Procedures, void* User);
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_StreamCreateURL(c_wchar* Url, int32 Offset, BassFlags Flags, DownloadProcedure Procedure, void* User);
         
         /// <summary>

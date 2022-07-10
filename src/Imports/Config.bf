@@ -21,7 +21,7 @@ namespace BeefBass
         /// <param name="Option">One of <see cref="Configuration"/> values.</param>
         /// <param name="NewValue">The New Value of the option.</param>
         /// <returns>If succesful, then <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
-        [Import(DllName), LinkName("BASS_SetConfig")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SetConfig")]
         public static extern bool Configure(Configuration Option, int32 NewValue);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace BeefBass
         /// <param name="Option">One of <see cref="Configuration"/> values.</param>
         /// <param name="NewValue">The New Value of the option.</param>
         /// <returns>If succesful, then <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
-        [Import(DllName), LinkName("BASS_SetConfigPtr")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SetConfigPtr")]
         public static extern bool Configure(Configuration Option, void* NewValue);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace BeefBass
         /// </summary>
         /// <param name="Option">One of <see cref="Configuration"/> values.</param>
         /// <returns>The configuration value or -1 on error. Use <see cref="LastError" /> to get the error code.</returns>
-        [Import(DllName), LinkName("BASS_GetConfig")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_GetConfig")]
         public static extern int32 GetConfig(Configuration Option);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace BeefBass
         /// </summary>
         /// <param name="Option">One of <see cref="Configuration"/> values.</param>
         /// <returns><see cref="IntPtr.Zero"/> on error. Use <see cref="LastError" /> to get the error code.</returns>
-        [Import(DllName), LinkName("BASS_GetConfigPtr")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_GetConfigPtr")]
         public static extern void* GetConfigPtr(Configuration Option);
 
         /// <summary>

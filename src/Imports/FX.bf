@@ -18,7 +18,7 @@ namespace BeefBass
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
         /// <seealso cref="ChannelSetFX"/>
         /// <seealso cref="FXGetParameters(int,IntPtr)"/>
-        [Import(DllName), LinkName("BASS_FXSetParameters")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FXSetParameters")]
         public static extern bool FXSetParameters(int32 Handle, void* Parameters);
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace BeefBass
         /// <exception cref="Errors.Handle"><paramref name="Handle"/> is not valid.</exception>
         /// <seealso cref="ChannelSetFX"/>
         /// <seealso cref="FXSetParameters(int,IntPtr)"/>
-        [Import(DllName), LinkName("BASS_FXGetParameters")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FXGetParameters")]
         public static extern bool FXGetParameters(int32 Handle, void* Parameters);
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace BeefBass
         /// Effects are automatically reset by <see cref="ChannelSetPosition"/>,
         /// except when called from a "<see cref="SyncFlags.Mixtime"/>" <see cref="SyncProcedure"/>.
         /// </remarks>
-        [Import(DllName), LinkName("BASS_FXReset")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FXReset")]
         public static extern bool FXReset(int32 Handle);
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace BeefBass
         /// <seealso cref="FXGetParameters(int,IntPtr)"/>
         /// <seealso cref="FXSetParameters(int,IntPtr)"/>
         /// <seealso cref="ChannelSetDSP"/>
-        [Import(DllName), LinkName("BASS_ChannelSetFX")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetFX")]
         public static extern int32 ChannelSetFX(int32 Handle, EffectType Type, int32 Priority);
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace BeefBass
         /// <para><see cref="ChannelRemoveDSP" /> can also be used to remove effects.</para>
         /// </remarks>
         /// <seealso cref="ChannelSetFX"/>
-        [Import(DllName), LinkName("BASS_ChannelRemoveFX")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelRemoveFX")]
         public static extern bool ChannelRemoveFX(int32 Handle, int32 FX);
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace BeefBass
         /// <remarks>If there are multiple DSP/FX with the same priority value, they will be applied in the order in which they were given that priority.</remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle"/> is invalid.</exception>
         /// <exception cref="Errors.NotAvailable">Priority is not supported on DX8 effects when the "with FX flag" DX8 effect implementation is used.</exception>
-        [Import(DllName), LinkName("BASS_FXSetPriority")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FXSetPriority")]
         public static extern bool FXSetPriority(int32 Handle, int32 Priority);
     }
 }

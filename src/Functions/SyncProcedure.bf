@@ -20,5 +20,6 @@ namespace BeefBass
     /// eg. set a <see cref="SyncFlags.Position"/> sync at the loop end position and seek to the loop start position in the callback.
     /// </para>
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function void SyncProcedure(int32 Handle, int32 Channel, int32 Data, void* User);
 }

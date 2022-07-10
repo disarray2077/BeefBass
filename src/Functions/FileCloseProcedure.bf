@@ -10,5 +10,6 @@ namespace BeefBass
     /// If the stream is freed before then, this function could be called while its <see cref="FileReadProcedure" /> function is in progress.
     /// If that happens, the <see cref="FileReadProcedure" /> function call should be immediately cancelled.
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function void FileCloseProcedure(void* User);
 }

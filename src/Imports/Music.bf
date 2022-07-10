@@ -10,10 +10,10 @@ namespace BeefBass
         /// <param name="Handle">The MOD music handle.</param>
         /// <returns>If successful, then <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle"/> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_MusicFree")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_MusicFree")]
         public static extern bool MusicFree(int32 Handle);
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_MusicLoad(bool mem, void* file, int64 offset, int32 Length, BassFlags flags, int32 freq);
 
         /// <summary>

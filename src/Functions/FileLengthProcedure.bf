@@ -13,5 +13,6 @@ namespace BeefBass
     /// With unbuffered streams, it may be used again when testing for EOF (end of file),
     /// allowing the file to grow in size.
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function int64 FileLengthProcedure(void* User);
 }

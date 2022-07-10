@@ -17,5 +17,6 @@ namespace BeefBass
     /// <see cref="Bass.RecordFree" /> should not be used to free the recording device within a recording callback function.
     /// Nor should <see cref="Bass.ChannelStop" /> be used to stop the recording; return <see langword="false" /> to do that instead.
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function bool RecordProcedure(int32 Handle, void* Buffer, int32 Length, void* User);
 }

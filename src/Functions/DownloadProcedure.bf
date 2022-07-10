@@ -24,5 +24,6 @@ namespace BeefBass
     /// to save individual tracks to disk from a Shoutcast stream.
     /// </para>
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function void DownloadProcedure(void* Buffer, int32 Length, void* User);
 }

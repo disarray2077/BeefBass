@@ -21,7 +21,7 @@ namespace BeefBass
         /// <seealso cref="ChannelSet3DPosition"/>
         /// <seealso cref="Set3DFactors"/>
         /// <seealso cref="Set3DPosition"/>
-        [Import(DllName), LinkName("BASS_Apply3D")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Apply3D")]
         public static extern void Apply3D();
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace BeefBass
         /// <exception cref="Errors.No3D">The device was not initialized with 3D support.</exception>
         /// <remarks>When using multiple devices, the current thread's device setting (as set with <see cref="CurrentDevice" />) determines which device this function call applies to.</remarks>
         /// <seealso cref="Set3DFactors"/>
-        [Import(DllName), LinkName("BASS_Get3DFactors")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Get3DFactors")]
         public static extern bool Get3DFactors(ref float Distance, ref float RollOff, ref float Doppler);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace BeefBass
         /// </remarks>
         /// <seealso cref="Apply3D"/>
         /// <seealso cref="Get3DFactors"/>
-        [Import(DllName), LinkName("BASS_Set3DFactors")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Set3DFactors")]
         public static extern bool Set3DFactors(float Distance, float RollOff, float Doppler);
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace BeefBass
         /// </remarks>
         /// <seealso cref="Set3DPosition"/>
         /// <seealso cref="Vector3D"/>
-        [Import(DllName), LinkName("BASS_Get3DPosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Get3DPosition")]
         public static extern bool Get3DPosition(ref Vector3D Position, ref Vector3D Velocity, ref Vector3D Front, ref Vector3D Top);
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace BeefBass
         /// <seealso cref="Get3DPosition"/>
         /// <seealso cref="Set3DFactors"/>
         /// <seealso cref="Vector3D"/>
-        [Import(DllName), LinkName("BASS_Set3DPosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Set3DPosition")]
         public static extern bool Set3DPosition(Vector3D Position, Vector3D Velocity, Vector3D Front, Vector3D Top);
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace BeefBass
         /// <seealso cref="ChannelGetAttribute(int, ChannelAttribute, out float)"/>
         /// <seealso cref="ChannelSet3DAttributes"/>
         /// <seealso cref="ChannelAttribute.EaxMix"/>
-        [Import(DllName), LinkName("BASS_ChannelGet3DAttributes")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGet3DAttributes")]
         public static extern bool ChannelGet3DAttributes(int32 Handle, ref Mode3D Mode, ref float Min, ref float Max, ref int iAngle, ref int oAngle, ref float OutVol);
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace BeefBass
         /// <seealso cref="ChannelSet3DPosition"/>
         /// <seealso cref="ChannelSetAttribute(int, ChannelAttribute, float)"/>
         /// <seealso cref="ChannelAttribute.EaxMix"/>
-        [Import(DllName), LinkName("BASS_ChannelSet3DAttributes")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSet3DAttributes")]
         public static extern bool ChannelSet3DAttributes(int32 Handle, Mode3D Mode, float Min, float Max, int32 iAngle, int32 oAngle, float OutVol);
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace BeefBass
         /// <seealso cref="Get3DFactors"/>
         /// <seealso cref="Get3DPosition"/>
         /// <seealso cref="Vector3D"/>
-        [Import(DllName), LinkName("BASS_ChannelGet3DPosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGet3DPosition")]
         public static extern bool ChannelGet3DPosition(int32 Handle, ref Vector3D Position, ref Vector3D Orientation, ref Vector3D Velocity);
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace BeefBass
         /// <seealso cref="Set3DFactors"/>
         /// <seealso cref="Set3DPosition"/>
         /// <seealso cref="Vector3D"/>
-        [Import(DllName), LinkName("BASS_ChannelSet3DPosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSet3DPosition")]
         public static extern bool ChannelSet3DPosition(int32 Handle, Vector3D Position, Vector3D Orientation, Vector3D Velocity);
     }
 }

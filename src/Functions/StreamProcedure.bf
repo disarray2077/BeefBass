@@ -26,5 +26,6 @@ namespace BeefBass
     /// <para>6 channels(5.1): left-front, right-front, center, LFE, left-rear/side, right-rear/side.</para>
     /// <para>8 channels(7.1): left-front, right-front, center, LFE, left-rear/side, right-rear/side, left-rear center, right-rear center.</para>
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function int32 StreamProcedure(int32 Handle, void* Buffer, int32 Length, void* User);
 }

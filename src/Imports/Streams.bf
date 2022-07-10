@@ -25,7 +25,7 @@ namespace BeefBass
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.NotFile">The stream is not a file stream.</exception>
         /// <exception cref="Errors.NotAvailable">The requested file position/status is not available.</exception>
-        [Import(DllName), LinkName("BASS_StreamGetFilePosition")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_StreamGetFilePosition")]
         public static extern int64 StreamGetFilePosition(int32 Handle, FileStreamPosition Mode = FileStreamPosition.Current);
 
         #region StreamProcedure
@@ -56,7 +56,7 @@ namespace BeefBass
 		/// <exception cref="Errors.Memory">There is insufficient memory.</exception>
 		/// <exception cref="Errors.No3D">Could not initialize 3D support.</exception>
 		/// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_StreamCreate")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_StreamCreate")]
         public static extern int32 CreateStream(int32 Frequency, int32 Channels, BassFlags Flags, StreamProcedure Procedure, void* User);
         #endregion
 
@@ -116,7 +116,7 @@ namespace BeefBass
         /// <exception cref="Errors.Parameter"><paramref name="Length" /> is not valid, it must equate to a whole number of samples.</exception>
         /// <exception cref="Errors.Ended">The stream has ended.</exception>
         /// <exception cref="Errors.Memory">There is insufficient memory.</exception>
-        [Import(DllName), LinkName("BASS_StreamPutData")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_StreamPutData")]
         public static extern int32 StreamPutData(int32 Handle, void* Buffer, int32 Length);
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace BeefBass
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.NotAvailable">The stream is not using the <see cref="StreamSystem.BufferPush"/> file system.</exception>
         /// <exception cref="Errors.Ended">The stream has ended.</exception>
-        [Import(DllName), LinkName("BASS_StreamPutFileData")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_StreamPutFileData")]
         public static extern int32 StreamPutFileData(int32 Handle, void* Buffer, int32 Length);
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace BeefBass
         /// <param name="Handle"> The stream handle.</param>
         /// <returns>If successful, <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Init"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_StreamFree")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_StreamFree")]
         public static extern bool StreamFree(int32 Handle);
     }
 }

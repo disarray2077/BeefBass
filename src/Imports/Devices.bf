@@ -79,7 +79,7 @@ namespace BeefBass
         /// <seealso cref="MusicLoad(string, long, int, BassFlags, int)"/>
         /// <seealso cref="CreateSample"/>
         /// <seealso cref="SampleLoad(string, long, int, int, BassFlags)"/>
-        [Import(DllName), LinkName("BASS_Init")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Init")]
         public static extern bool Init(int32 Device = DefaultDevice, int32 Frequency = 44100, DeviceInitFlags Flags = DeviceInitFlags.Default, void* Win = null, void* ClsID = null);
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace BeefBass
         /// </remarks>
         /// <seealso cref="Pause"/>
         /// <seealso cref="Stop"/>
-        [Import(DllName), LinkName("BASS_Start")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Start")]
         public static extern bool Start();
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace BeefBass
         /// <para>When using multiple devices, the current thread's device setting (as set with <see cref="CurrentDevice" />) determines which device this function call applies to.</para>
         /// </remarks>
         /// <exception cref="Errors.Init"><see cref="Init" /> has not been successfully called.</exception>
-        [Import(DllName), LinkName("BASS_Pause")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Pause")]
         public static extern bool Pause();
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace BeefBass
         /// <para>When using multiple devices, the current thread's device setting (as set with <see cref="CurrentDevice" />) determines which device this function call applies to.</para>
         /// </remarks>
         /// <exception cref="Errors.Init"><see cref="Init" /> has not been successfully called.</exception>
-        [Import(DllName), LinkName("BASS_Stop")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Stop")]
         public static extern bool Stop();
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace BeefBass
         /// <para>When using multiple devices, the current thread's device setting (as set with <see cref="CurrentDevice" />) determines which device this function call applies to.</para>
         /// </remarks>
         /// <exception cref="Errors.Init"><see cref="Init" /> has not been successfully called.</exception>
-        [Import(DllName), LinkName("BASS_Free")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_Free")]
         public static extern bool Free();
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace BeefBass
         /// Recording devices are indicated by the HIWORD of the return value being 1, when this function is called with a HRECORD channel.
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid channel.</exception>
-        [Import(DllName), LinkName("BASS_ChannelGetDevice")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelGetDevice")]
         public static extern int32 ChannelGetDevice(int32 Handle);
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace BeefBass
         /// </exception>
         /// <exception cref="Errors.Memory">There is insufficient memory.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_ChannelSetDevice")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_ChannelSetDevice")]
         public static extern bool ChannelSetDevice(int32 Handle, int32 Device);
 
         /// <summary>
@@ -187,10 +187,10 @@ namespace BeefBass
         }
 
         #region Current Device Volume
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern float BASS_GetVolume();
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern bool BASS_SetVolume(float volume);
 
         /// <summary>
@@ -231,10 +231,10 @@ namespace BeefBass
         #endregion
 
         #region Current Device
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_GetDevice();
 
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern bool BASS_SetDevice(int32 Device);
 
         /// <summary>
@@ -308,7 +308,7 @@ namespace BeefBass
         /// </para>
         /// </remarks>
         /// <exception cref="Errors.Device">The device number specified is invalid.</exception>
-        [Import(DllName), LinkName("BASS_GetDeviceInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_GetDeviceInfo")]
         public static extern bool GetDeviceInfo(int32 Device, out DeviceInfo Info);
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace BeefBass
         /// <remarks>
         /// When using multiple devices, the current thread's device setting (as set with <see cref="CurrentDevice"/>) determines which device this function call applies to.
         /// </remarks>
-        [Import(DllName), LinkName("BASS_GetInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_GetInfo")]
         public static extern bool GetInfo(out BassInfo Info);
 
         /// <summary>

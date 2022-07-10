@@ -68,7 +68,7 @@ namespace BeefBass
         /// <exception cref="Errors.Handle"><paramref name="Sample" /> is not a valid sample handle.</exception>
         /// <exception cref="Errors.NoChannel">The sample has no free channels... the maximum number of simultaneous playbacks has been reached, and no override flag or <see cref="BassFlags.SampleChannelNew"/> was specified for the sample.</exception>
         /// <exception cref="Errors.Timeout">The sample's minimum time gap (<see cref="SampleInfo" />) has not yet passed since the last channel was created.</exception>
-        [Import(DllName), LinkName("BASS_SampleGetChannel")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleGetChannel")]
         public static extern int32 SampleGetChannel(int32 Sample, BassFlags Flags);
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace BeefBass
         /// <param name="Handle">The sample handle.</param>
         /// <returns>If successful, <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_SampleFree")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleFree")]
         public static extern bool SampleFree(int32 Handle);
 
         #region Sample Set Data
@@ -93,7 +93,7 @@ namespace BeefBass
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_SampleSetData")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleSetData")]
         public static extern bool SampleSetData(int32 Handle, void* Buffer);
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace BeefBass
         /// <exception cref="Errors.Memory">There is insufficient memory.</exception>
         /// <exception cref="Errors.No3D">Could not initialize 3D support.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_SampleCreate")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleCreate")]
         public static extern int32 CreateSample(int32 Length, int32 Frequency, int32 Channels, int32 Max, BassFlags Flags);
 
         #region Sample Get Data
@@ -213,7 +213,7 @@ namespace BeefBass
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.Unknown">Some other mystery problem!</exception>
-        [Import(DllName), LinkName("BASS_SampleGetData")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleGetData")]
         public static extern bool SampleGetData(int32 Handle, void* Buffer);
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace BeefBass
         /// <param name="Info">An instance of the <see cref="SampleInfo" /> class to store the sample information at.</param>
         /// <returns>If successful, <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_SampleGetInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleGetInfo")]
         public static extern bool SampleGetInfo(int32 Handle, out SampleInfo Info);
 
         /// <summary>
@@ -325,11 +325,11 @@ namespace BeefBass
         /// </para>
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_SampleSetInfo")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleSetInfo")]
         public static extern bool SampleSetInfo(int32 Handle, SampleInfo* Info);
 
         #region SampleGetChannels
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_SampleGetChannels(int32 handle, int32[] channels);
 
         /// <summary>
@@ -367,11 +367,11 @@ namespace BeefBass
         /// <returns>If successful, <see langword="true" /> is returned, else <see langword="false" /> is returned. Use <see cref="LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not a valid sample handle.</exception>
         /// <remarks>If a sample is playing simultaneously multiple times, calling this function will stop them all, which is obviously simpler than calling <see cref="ChannelStop" /> multiple times.</remarks>
-        [Import(DllName), LinkName("BASS_SampleStop")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_SampleStop")]
         public static extern bool SampleStop(int32 Handle);
 
         #region Sample Load
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_SampleLoad(bool mem, void* file, int64 offset, int32 Length, int32 max, BassFlags flags);
 
         /// <summary>

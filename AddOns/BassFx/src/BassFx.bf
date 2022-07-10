@@ -18,7 +18,7 @@ namespace BeefBass.Fx
 #endif
         
         #region Version
-        [Import(DllName), CLink]
+        [Import(DllName), CallingConvention(.Stdcall), CLink]
         static extern int32 BASS_FX_GetVersion();
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace BeefBass.Fx
         /// <exception cref="Errors.Handle"><paramref name="Channel" /> is not valid.</exception>
         /// <exception cref="Errors.Decode">The <paramref name="Channel" /> is not a decoding channel. Make sure the channel was created using the <see cref="BassFlags.Decode"/> flag.</exception>
         /// <exception cref="Errors.SampleFormat">The <paramref name="Channel" />'s format is not supported. Make sure the channel is either Stereo or Mono.</exception>
-        [Import(DllName), LinkName("BASS_FX_TempoCreate")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_TempoCreate")]
         public static extern int32 TempoCreate(int32 Channel, BassFlags Flags);
         
         /// <summary>
@@ -48,7 +48,7 @@ namespace BeefBass.Fx
         /// <param name="Channel">The handle of the reversed stream.</param>
         /// <returns>If successful, the handle of the source of the reversed stream is returned, else 0 is returned. Use <see cref="Bass.LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Channel" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_TempoGetSource")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_TempoGetSource")]
         public static extern int32 TempoGetSource(int32 Channel);
         
         /// <summary>
@@ -57,7 +57,7 @@ namespace BeefBass.Fx
         /// <param name="Channel">Tempo stream (or source channel) handle.</param>
         /// <returns>If successful, the resampling ratio is returned, else 0 is returned. Use <see cref="Bass.LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Channel" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_TempoGetRateRatio")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_TempoGetRateRatio")]
         public static extern float TempoGetRateRatio(int32 Channel);
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace BeefBass.Fx
         /// <exception cref="Errors.Handle"><paramref name="Channel" /> is not valid.</exception>
         /// <exception cref="Errors.Decode">The <paramref name="Channel" /> is not a decoding channel. Make sure the channel was created using the <see cref="BassFlags.Decode"/> flag.</exception>
         /// <exception cref="Errors.SampleFormat">The <paramref name="Channel" />'s format is not supported. Make sure the channel is either Stereo or Mono.</exception>
-        [Import(DllName), LinkName("BASS_FX_ReverseCreate")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_ReverseCreate")]
         public static extern int32 ReverseCreate(int32 Channel, float DecodingBlockLength, BassFlags Flags);
         
         /// <summary>
@@ -88,7 +88,7 @@ namespace BeefBass.Fx
         /// <param name="Channel">The handle of the reversed stream.</param>
         /// <returns>If successful, the handle of the source of the reversed stream is returned, else 0 is returned. Use <see cref="Bass.LastError" /> to get the error code.</returns>
         /// <exception cref="Errors.Handle"><paramref name="Channel" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_ReverseGetSource")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_ReverseGetSource")]
         public static extern int32 ReverseGetSource(int32 Channel);
 
         #region BPM
@@ -119,7 +119,7 @@ namespace BeefBass.Fx
         /// <exception cref="Errors.SampleFormat">The <paramref name="Channel" />'s format is not supported. Make sure the channel is either Stereo or Mono.</exception>
         /// <exception cref="Errors.Parameter">An illegal parameter was specified.</exception>
         /// <exception cref="Errors.Already">BPM detection, for this <paramref name="Channel" /> is already in use.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_DecodeGet")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_DecodeGet")]
         public static extern float BPMDecodeGet(int32 Channel, double StartSec, double EndSec, int32 MinMaxBPM, BassFlags Flags, BPMProgressProcedure Procedure, void* User = null);
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace BeefBass.Fx
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
         /// <exception cref="Errors.Parameter">An illegal parameter was specified.</exception>
         /// <exception cref="Errors.Already"><see cref="BassFlags.FXBpmMult2"/> already used on this handle.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_CallbackSet")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_CallbackSet")]
         public static extern bool BPMCallbackSet(int32 Handle, BPMProcedure Procedure, double Period, int32 MinMaxBPM, BassFlags Flags, void* User = null);
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace BeefBass.Fx
         /// The BPM callback is automatically reset by <see cref="Bass.ChannelSetPosition" />, except when called from a <see cref="SyncFlags.Mixtime"/> <see cref="SyncProcedure" />.
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_CallbackReset")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_CallbackReset")]
         public static extern bool BPMCallbackReset(int32 Handle);
         
         /// <summary>
@@ -172,7 +172,7 @@ namespace BeefBass.Fx
         /// You can't set/get this flag with <see cref="Bass.ChannelFlags" />/<see cref="Bass.ChannelGetInfo(int, out ChannelInfo)" />.
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_Free")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_Free")]
         public static extern bool BPMFree(int32 Handle);
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace BeefBass.Fx
         /// <exception cref="Errors.Decode">The <paramref name="Channel" /> is not a decoding channel. Make sure the channel was created using the <see cref="BassFlags.Decode"/> flag.</exception>
         /// <exception cref="Errors.Parameter">An illegal parameter was specified.</exception>
         /// <exception cref="Errors.Already">Beat detection, for this <paramref name="Channel" /> is already in use.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_BeatDecodeGet")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_BeatDecodeGet")]
         public static extern bool BPMBeatDecodeGet(int32 Channel, double StartSec, double EndSec, BassFlags Flags, BPMBeatProcedure Procedure, void* User = null);
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace BeefBass.Fx
         /// <para>Note: You should call <see cref="BPMBeatCallbackReset" /> after you have changed the position of the stream when called from a <see cref="SyncFlags.Mixtime"/> <see cref="SyncProcedure" />.</para>
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_BeatCallbackSet")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_BeatCallbackSet")]
         public static extern bool BPMBeatCallbackSet(int32 Handle, BPMBeatProcedure Procedure, void* User = null);
         
         /// <summary>
@@ -219,7 +219,7 @@ namespace BeefBass.Fx
         /// The BPM callback is automatically reset by <see cref="Bass.ChannelSetPosition" />, except when called from a <see cref="SyncFlags.Mixtime"/> <see cref="SyncProcedure" />.
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_BeatCallbackReset")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_BeatCallbackReset")]
         public static extern bool BPMBeatCallbackReset(int32 Handle);
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace BeefBass.Fx
         /// So the <paramref name="Beat_rTime" /> should avoid, that a second (quickly repeated beat) beat is detected.
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_BeatSetParameters")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_BeatSetParameters")]
         public static extern bool BPMBeatSetParameters(int32 Handle, float Bandwidth, float CenterFreq, float Beat_rTime);
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace BeefBass.Fx
         /// So the <paramref name="Beat_rTime" /> should avoid, that a second (quickly repeated beat) beat is detected.
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_BeatGetParameters")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_BeatGetParameters")]
         public static extern bool BPMBeatGetParameters(int32 Handle, out float Bandwidth, out float CenterFreq, out float Beat_rTime);
         
         /// <summary>
@@ -277,7 +277,7 @@ namespace BeefBass.Fx
         /// </para>
         /// </remarks>
         /// <exception cref="Errors.Handle"><paramref name="Handle" /> is not valid.</exception>
-        [Import(DllName), LinkName("BASS_FX_BPM_BeatFree")]
+        [Import(DllName), CallingConvention(.Stdcall), LinkName("BASS_FX_BPM_BeatFree")]
         public static extern bool BPMBeatFree(int32 Handle);
         #endregion
     }

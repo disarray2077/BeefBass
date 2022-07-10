@@ -27,5 +27,6 @@ namespace BeefBass
     /// or <see cref="Bass.ChannelStop" />, <see cref="Bass.MusicFree" />, <see cref="Bass.StreamFree" /> with the same channel Handle as received by the callback.</para>
     /// <para>If the <see cref="Bass.FloatingPointDSP"/> config option is set, then DSP callback functions will always be passed 32-bit floating-point sample data, regardless of what the channels' actual sample format is.</para>
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function void DSPProcedure(int32 Handle, int32 Channel, void* Buffer, int32 Length, void* User);
 }

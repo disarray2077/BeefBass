@@ -16,5 +16,6 @@ namespace BeefBass
     /// It is better to return less data (even none) rather than wait for more data.
     /// A buffered file stream isn't affected by delays like this, as this function runs in its own thread then.</para>
     /// </remarks>
+    [CallingConvention(.Stdcall)]
     public function int32 FileReadProcedure(void* Buffer, int32 Length, void* User);
 }
